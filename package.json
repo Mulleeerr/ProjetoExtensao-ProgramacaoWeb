@@ -1,0 +1,19 @@
+{
+  "name": "meschkecafecolonial",
+  "version": "1.0.0",
+  "description": "Projeto de extensao para a aula de web",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuilhermeMohr/MeschkeCafeColonial.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GuilhermeMohr/MeschkeCafeColonial/issues"
+  },
+  "homepage": "https://github.com/GuilhermeMohr/MeschkeCafeColonial#readme"
+}

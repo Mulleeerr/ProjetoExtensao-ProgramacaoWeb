@@ -1,0 +1,24 @@
+#navbar-geral {
+    height: 60px;
+    min-height: 60px; 
+}
+
+@media (max-width: 991px) {
+    #navbar-geral {
+        height: 60px; /* Altura consistente */
+        min-height: 60px;
+    }
+
+    .navbar-nav {
+        flex-direction: row; /* Mantenha os itens em linha */
+        justify-content: center; /* Centralize os itens */
+    }
+
+    .nav-link {
+        font-size: 0.9rem; /* Ajuste o tamanho do texto se necessário */
+    }
+
+    .nav-link i {
+        font-size: 1.2rem; /* Ajuste o tamanho dos ícones */
+    }
+}

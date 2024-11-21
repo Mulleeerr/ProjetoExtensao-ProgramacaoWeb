@@ -1,0 +1,83 @@
+/* Estilo da pagina */
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+    color: #343a40;
+}
+
+.body1 {
+    background-color: #809c7c;
+}
+
+/* Container principal */
+.container {
+    margin-top: 50px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Tabela */
+.table {
+    margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+.table thead {
+    background-color: #495057;
+    color: #ffffff;
+    text-align: center;
+}
+
+.table th, .table td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px;
+    border: 1px solid #dee2e6;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f3f5;
+    transition: background-color 0.3s ease;
+}
+
+/* Total */
+#total-price {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #495057;
+}
+
+/* Botão de finalizar compra */
+#finalizar-compra {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    background-color: #343a40;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+#finalizar-compra:hover {
+    background-color: #495057;
+    cursor: pointer;
+}
+
+/* Botão de remover */
+.btn-danger {
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #dc3545;
+    color: #ffffff;
+}

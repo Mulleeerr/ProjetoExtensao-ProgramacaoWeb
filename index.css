@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+.body1 {
+    background-color: #809c7c;
+}
+
+#card-produtos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    margin: 100px auto 150px;
+}
+
+.produto {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    min-width: 250px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    height: 100%;
+}
+
+.produto img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 8px;
+    border-radius: 8px 8px 0 0;
+}
+
+.card-body {
+    flex: 1;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+}
+
+.nome-preco p {
+    margin: 5px 0;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.botao-compra {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #809c7c;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 15px;
+    margin: 15px;
+    width: auto;
+    box-sizing: border-box;
+}
+
+.botao-compra i {
+    cursor: pointer;
+    color: white;
+    font-size: 1.2rem;
+    margin-right: 10px;
+}
+
+.botao-compra input {
+    width: 50px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+
+#preco-produto {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 0.9rem;
+}
+
