@@ -1,8 +1,10 @@
 function updateCart() {
     const cart = JSON.parse(sessionStorage.getItem('cart')) || [];
-    const cartTable = document.getElementById('tabela-carrinho');
-    const totalAmount = document.getElementById('total-carrinho');
+    const cartTable = document.getElementById('cart-table');
+    const totalAmount = document.getElementById('cart-total');
+    const totalDiscountCart = document.getElementById('cart-discount');
     let totalPrice = 0;
+    let totalDiscount = 0;
 
     cartTable.innerHTML = '';
 
@@ -12,14 +14,17 @@ function updateCart() {
             <td>${item.product}</td>
             <td>${item.quantity}</td>
             <td>R$ ${item.value.toFixed(2)}</td>
+            <td>R$ ${item.discountAmount.toFixed(2)}</td>
             <td>R$ ${item.totalPrice.toFixed(2)}</td>
             <td><button class="btn btn-danger btn-sm" onclick="removeItem(${index})">X</button></td>
         `;
         cartTable.appendChild(row);
         totalPrice += item.totalPrice;
+        totalDiscount += item.discountAmount;
     });
 
     totalAmount.textContent = totalPrice.toFixed(2);
+    totalDiscountCart.textContent = totalDiscount.toFixed(2);
 }
 
 function showPopup(message, onConfirm, onCancel) {

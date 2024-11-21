@@ -87,16 +87,21 @@ function addToCart(product, value, stock, discountQuantity, discountValue) {
         return;
     }
 
-    // Verifica se o desconto se aplica a quantidde do produto
-    let finalPrice = value * quantity;
+    let total = value * quantity;
+    let finalPrice = total;
+    let discountAmount = 0;
+
+    // Se o desconto se aplica
     if (quantity >= discountQuantity) {
-        finalPrice = value * (1 - discountValue / 100) * quantity;
+        discountAmount = total * (1 - discountValue / 100);
+        finalPrice = total - discountAmount;
     }
 
     const cartItem = {
         product,
         quantity,
         value,
+        discountAmount,
         totalPrice: finalPrice,
     };
 
@@ -117,7 +122,7 @@ function addToCart(product, value, stock, discountQuantity, discountValue) {
                 cart.push(cartItem);
             }
 
-            // Atualiza o estoque e salva no sessionStorage
+            // Atualiza o carrinho no sessionStorage
             sessionStorage.setItem('cart', JSON.stringify(cart));
             updateCartBadge();
 
@@ -127,6 +132,7 @@ function addToCart(product, value, stock, discountQuantity, discountValue) {
         }
     );
 }
+
 
 
 
