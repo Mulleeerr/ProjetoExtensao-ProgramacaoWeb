@@ -22,15 +22,36 @@ function updateCart() {
     totalAmount.textContent = totalPrice.toFixed(2);
 }
 
+function showPopup(message, onConfirm, onCancel) {
+    const popup = document.getElementById("popup-confirmation");
+    const messageElement = document.getElementById("popup-message");
+    const confirmButton = document.getElementById("popup-confirm");
+    const cancelButton = document.getElementById("popup-cancel");
+
+    messageElement.textContent = message;
+    popup.classList.remove("hidden");
+
+    // Eventos para confirmar ou cancelar
+    confirmButton.onclick = () => {
+        popup.classList.add("hidden");
+        onConfirm();
+    };
+
+    cancelButton.onclick = () => {
+        popup.classList.add("hidden");
+        if (onCancel) onCancel();
+    };
+}
+
 
 function removeItem(index) {
-    const confirmRemove = confirm('Tem certeza que deseja remover este item do carrinho?');
-    if (confirmRemove) {
-        const cart = JSON.parse(sessionStorage.getItem('cart')) || [];
-        cart.splice(index, 1);
-        sessionStorage.setItem('cart', JSON.stringify(cart));
-        updateCart();
-    }
+    showPopup('Tem certeza que deseja remover este item do carrinho?',() => {
+            const cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+            cart.splice(index, 1);
+            sessionStorage.setItem('cart', JSON.stringify(cart));
+            updateCart(); 
+        },
+    );
 }
 
 document.addEventListener('DOMContentLoaded', function() {

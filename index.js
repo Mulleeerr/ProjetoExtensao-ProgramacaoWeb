@@ -24,8 +24,9 @@ async function fetchCSVData(url) {
   
       // Ignora o cabeçalho e adiciona cada linha como um cartão
       for (let i = 1; i < rows.length; i++) {
-        const [product, value, quantity, imageUrl] = rows[i];
-        if (product && value && quantity && imageUrl) {
+        const [product, value, quantity, imageUrl,stock,discountQuantity,discountValue] = rows[i];
+        console.log(`Linha ${i}:`, product, value, quantity, imageUrl, stock, discountQuantity, discountValue);
+        if (product && value && quantity && imageUrl && stock && discountQuantity && discountValue) {
           // Cria o HTML para cada cartão com os dados do produto
           const card = `
           <div class="justify-content-evenly produtos">
@@ -39,7 +40,7 @@ async function fetchCSVData(url) {
                           </div>
                           <div class="col">
                               <div class="row botao-compra">
-                                  <i class="h5 col bi bi-cart-plus" onclick="addToCart('${product}', ${value})"></i>
+                                  <i class="h5 col bi bi-cart-plus" onclick="addToCart('${product}', ${value}, ${stock}, ${discountQuantity}, ${discountValue})"></i>
                                   <input id="quantidade-${product}" class="col" value="1" min="1" />
                               </div>
                           </div>
@@ -56,37 +57,77 @@ async function fetchCSVData(url) {
     }
   }
 
-  function addToCart(product, value) {
-    const quantityProduct = document.getElementById(`quantidade-${product}`);
-    const quantity = parseInt(quantityProduct.value);
+  function showPopup(message, onConfirm, onCancel) {
+    const popup = document.getElementById("popup-confirmation");
+    const messageElement = document.getElementById("popup-message");
+    const confirmButton = document.getElementById("popup-confirm");
+    const cancelButton = document.getElementById("popup-cancel");
 
-    if (quantity > 0) {
-        const cartItem = {
-            product,
-            quantity,
-            value,
-            totalPrice: value * quantity
-        };
-        const productName = product.split(' ')[0];
-        let confirmation = confirm(`Deseja adicionar ${quantity}x ${productName} ao Carrinho?`);
+    messageElement.textContent = message;
+    popup.classList.remove("hidden");
 
-        // Verifica se existe ja um carrinho armazenado no sessionStorage, se tiver, converte ele em um array
-        let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
-        // Procura um produto se algum produto deste array e retorna o indice dele no carrinho
-        const existingProductIndex = cart.findIndex(item => item.product === product);
+    // Eventos para confirmar ou cancelar
+    confirmButton.onclick = () => {
+        popup.classList.add("hidden");
+        onConfirm();
+    };
 
-        // Caso o produto que esta tentando adicionar ja exista, apenas incrementa a quantidade e altera o preco
-        if (existingProductIndex !== -1) {
-            cart[existingProductIndex].quantity += quantity;
-            cart[existingProductIndex].totalPrice = cart[existingProductIndex].value * cart[existingProductIndex].quantity;
-        } else {
-            cart.push(cartItem);
-        }
-        // Armazena no SessionStorage o carrinho atualizado
-        sessionStorage.setItem('cart', JSON.stringify(cart));
-        updateCartBadge();
-    }
+    cancelButton.onclick = () => {
+        popup.classList.add("hidden");
+        if (onCancel) onCancel();
+    };
 }
+
+function addToCart(product, value, stock, discountQuantity, discountValue) {
+    const quantityInput = document.getElementById(`quantidade-${product}`);
+    const quantity = parseInt(quantityInput.value);
+
+    if (quantity > stock) {
+        alert("Quantidade solicitada excede o estoque disponível.");
+        return;
+    }
+
+    // Verifica se o desconto se aplica a quantidde do produto
+    let finalPrice = value * quantity;
+    if (quantity >= discountQuantity) {
+        finalPrice = value * (1 - discountValue / 100) * quantity;
+    }
+
+    const cartItem = {
+        product,
+        quantity,
+        value,
+        totalPrice: finalPrice,
+    };
+
+    // Exibe popup de confirmação
+    const productName = product.split(' ')[0];
+    showPopup(
+        `Deseja adicionar ${quantity}x ${productName} ao Carrinho?`,
+        () => {
+            let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+            const existingProductIndex = cart.findIndex(item => item.product === product);
+
+            if (existingProductIndex !== -1) {
+                // Atualiza o item no carrinho
+                cart[existingProductIndex].quantity += quantity;
+                cart[existingProductIndex].totalPrice += finalPrice;
+            } else {
+                // Adiciona novo item ao carrinho
+                cart.push(cartItem);
+            }
+
+            // Atualiza o estoque e salva no sessionStorage
+            sessionStorage.setItem('cart', JSON.stringify(cart));
+            updateCartBadge();
+
+            // Atualiza estoque no sistema
+            const newStock = stock - quantity;
+            console.log(`Estoque atualizado para ${product}: ${newStock}`);
+        }
+    );
+}
+
 
 
 document.addEventListener('DOMContentLoaded', loadNavlogo);

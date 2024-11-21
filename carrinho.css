@@ -62,6 +62,7 @@ body {
     border: none;
     border-radius: 6px;
     transition: background-color 0.3s ease;
+    margin-bottom: 15px;
 }
 
 #finalizar-compra:hover {
@@ -81,3 +82,4 @@ body {
     background-color: #dc3545;
     color: #ffffff;
 }
+
