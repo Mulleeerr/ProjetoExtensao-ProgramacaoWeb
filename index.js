@@ -125,10 +125,6 @@ function addToCart(product, value, stock, discountQuantity, discountValue) {
             // Atualiza o carrinho no sessionStorage
             sessionStorage.setItem('cart', JSON.stringify(cart));
             updateCartBadge();
-
-            // Atualiza estoque no sistema
-            const newStock = stock - quantity;
-            console.log(`Estoque atualizado para ${product}: ${newStock}`);
         }
     );
 }

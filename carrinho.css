@@ -70,6 +70,13 @@ body {
     cursor: pointer;
 }
 
+#popup-confirmation{
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
 /* Botão de remover */
 .btn-danger {
     font-size: 0.9rem;
@@ -82,4 +89,5 @@ body {
     background-color: #dc3545;
     color: #ffffff;
 }
+
 

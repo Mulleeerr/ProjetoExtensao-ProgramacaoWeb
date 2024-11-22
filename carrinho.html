@@ -13,6 +13,7 @@
 
 <body class="body1">
     <script src="./carrinho.js"></script>
+    <script src="./global/global.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     <div id="navlogo-carrinho-mainpage"></div>
@@ -26,7 +27,6 @@
                     <th>Produto</th>
                     <th>Quantidade</th>
                     <th>Preço Unitário</th>
-                    <th>Desconto</th>
                     <th>Total</th>
                     <th></th>
                 </tr>
@@ -40,6 +40,12 @@
             <h4>Total Compra: R$ <span id="cart-total">0.00</span></h4>
         </div>
 
+        <div id="popup-container">
+            <div id="auto-popup" class="popup hidden">
+                <p id="popup-message">Mensagem aqui!</p>
+            </div>
+        </div>
+
         <!-- Botão para finalizar compra -->
         <div class="text-end">
             <button id="finalizar-compra" class="btn btn-dark d-flex align-items-center justify-content-center gap-2">
@@ -49,7 +55,7 @@
 
         <div id="popup-confirmation" class="popup hidden">
             <div class="popup-content">
-                <p id="popup-message">Você deseja adicionar este produto ao carrinho?</p>
+                <p id="popup-message">Você deseja remover este produto do carrinho?</p>
                 <div class="popup-actions">
                     <button class="btn btn-success" id="popup-confirm">Sim</button>
                     <button class="btn btn-danger" id="popup-cancel">Não</button>

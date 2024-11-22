@@ -14,7 +14,6 @@ function updateCart() {
             <td>${item.product}</td>
             <td>${item.quantity}</td>
             <td>R$ ${item.value.toFixed(2)}</td>
-            <td>R$ ${item.discountAmount.toFixed(2)}</td>
             <td>R$ ${item.totalPrice.toFixed(2)}</td>
             <td><button class="btn btn-danger btn-sm" onclick="removeItem(${index})">X</button></td>
         `;
@@ -25,6 +24,7 @@ function updateCart() {
 
     totalAmount.textContent = totalPrice.toFixed(2);
     totalDiscountCart.textContent = totalDiscount.toFixed(2);
+    updateCartBadge();
 }
 
 function showPopup(message, onConfirm, onCancel) {
@@ -47,7 +47,6 @@ function showPopup(message, onConfirm, onCancel) {
         if (onCancel) onCancel();
     };
 }
-
 
 function removeItem(index) {
     showPopup('Tem certeza que deseja remover este item do carrinho?',() => {
@@ -74,13 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     alert("Nome não informado. A compra foi cancelada.");
                     return;
                 }
-
-                const telefone = prompt("Por favor, insira seu telefone (exemplo: 559999999999):");
-                if (!telefone) {
-                    alert("Telefone não informado. A compra foi cancelada.");
-                    return;
-                }
-
+                // Cria a mensagem para ser enviada no pedido
                 let message = `Olá, meu nome é ${nome} e estou fazendo um pedido de compra. Confira as informações abaixo:\n\n`;
                 let totalPrice = 0;
                 
@@ -98,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // console.log('Mensagem gerada:', message);
                 // console.log('Mensagem codificada:', completedMessage);
 
-                const whatsappLink = `https://wa.me/${telefone}?text=${completedMessage}`;
+                const whatsappLink = `https://wa.me/554884928409?text=${completedMessage}`;
                 
                 // Verifique se o link está correto
                 console.log('Link gerado:', whatsappLink);
@@ -106,11 +99,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Abrir o link no WhatsApp
                 window.open(whatsappLink, '_blank');
             } else {
-                alert('Seu carrinho está vazio!');
+                showAutoPopup("Carrinho está vazio!", 2000);
             }
         });
     } else {
-        console.error('Botão de finalizar compra não encontrado!');
     }
 });
 
