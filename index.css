@@ -76,6 +76,14 @@
     border-radius: 4px;
 }
 
+.quantidade-text {
+    font-size: 0.9rem;
+    color: gray;
+    display: block;
+    text-align: right;
+    margin-top: 5px;
+    margin-right: 5px;
+}
 
 #preco-produto {
     font-style: italic;
@@ -94,4 +102,21 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
+}
+
+#auto-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #212529;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    text-align: center;
+    word-wrap: break-word;
 }

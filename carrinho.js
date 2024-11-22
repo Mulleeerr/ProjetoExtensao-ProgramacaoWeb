@@ -60,46 +60,53 @@ function removeItem(index) {
 
 document.addEventListener('DOMContentLoaded', function() {
     const botaoFinalizar = document.getElementById('finalizar-compra');
-    
+    const modal = document.getElementById('modalName');
+    const btnConfirmar = document.getElementById('btnCofirm');
+    const closeBtn = document.getElementsByClassName('close-btn')[0];
+    const nomeInput = document.getElementById('BuyerName');
+
     if (botaoFinalizar) {
         botaoFinalizar.addEventListener('click', () => {
             const cart = JSON.parse(sessionStorage.getItem('cart')) || [];
-            //console.log('Conteúdo do carrinho:', cart);
+            
 
             if (cart.length > 0) {
-                // Cria e exibe o formulário de nome e telefone
-                const nome = prompt("Por favor, insira seu nome:");
-                if (!nome) {
-                    alert("Nome não informado. A compra foi cancelada.");
-                    return;
-                }
-                // Cria a mensagem para ser enviada no pedido
-                let message = `Olá, meu nome é ${nome} e estou fazendo um pedido de compra. Confira as informações abaixo:\n\n`;
-                let totalPrice = 0;
+                modal.style.display = "block";
+            // Quando clica em "Confirmar", gera a mensagem para WhatsApp
+            btnConfirmar.addEventListener('click', function() {
+                const nome = nomeInput.value;
                 
+                // Gerar mensagem para WhatsApp
+                const cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+                let message = `Olá, meu nome é ${nome} e desejo realizar uma compra. Segue pedido de compra abaixo:\n\n`;
+
                 cart.forEach(item => {
-                    message += `Produto: ${item.product}\nQuantidade: ${item.quantity}\n`;
-                    message += `Preço Total: R$ ${item.totalPrice.toFixed(2)}\n\n`;
-                    totalPrice += item.totalPrice;
+                    message += `Produto: ${item.product}\nQuantidade: ${item.quantity}\nPreço Total: R$ ${item.totalPrice.toFixed(2)}\n\n`;
                 });
 
+                const totalPrice = cart.reduce((total, item) => total + item.totalPrice, 0);
                 message += `Total da Compra: R$ ${totalPrice.toFixed(2)}\n`;
-                message += `\nPor favor, aguardo o retorno sobre o status do meu pedido. Obrigado!`;
-                
+
                 const completedMessage = encodeURIComponent(message);
-
-                // console.log('Mensagem gerada:', message);
-                // console.log('Mensagem codificada:', completedMessage);
-
                 const whatsappLink = `https://wa.me/554884928409?text=${completedMessage}`;
-                
-                // Verifique se o link está correto
-                console.log('Link gerado:', whatsappLink);
-                
-                // Abrir o link no WhatsApp
-                window.open(whatsappLink, '_blank');
+                window.open(whatsappLink, '_blank'); // Abre o WhatsApp
+
+                modal.style.display = "none";
+            });
+
+            // Fechar modal quando clicar no "X"
+            closeBtn.addEventListener('click', function() {
+                modal.style.display = "none";
+            });
+
+            // Fechar modal se clicar fora da modal
+            window.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            });
             } else {
-                showAutoPopup("Carrinho está vazio!", 2000);
+                showAutoPopup("Carrinho está vazio!", 2500);
             }
         });
     } else {

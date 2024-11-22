@@ -41,8 +41,9 @@ async function fetchCSVData(url) {
                           <div class="col">
                               <div class="row botao-compra">
                                   <i class="h5 col bi bi-cart-plus" onclick="addToCart('${product}', ${value}, ${stock}, ${discountQuantity}, ${discountValue})"></i>
-                                  <input id="quantidade-${product}" class="col" value="1" min="1" />
+                                  <input id="quantidade-${product}" class="col" value="1" min="1" oninput="this.value = this.value.replace(/[^0-9]/g, '')"/>
                               </div>
+                              <span class="quantidade-text">Estoque: ${stock}</span>
                           </div>
                       </div>
                   </div>
@@ -82,8 +83,13 @@ function addToCart(product, value, stock, discountQuantity, discountValue) {
     const quantityInput = document.getElementById(`quantidade-${product}`);
     const quantity = parseInt(quantityInput.value);
 
+    if (quantity === 0) {
+        showAutoPopup(`Adicione pelo menos uma unidade deste produto!`, 3000);
+        return;
+    }
+
     if (quantity > stock) {
-        alert("Quantidade solicitada excede o estoque disponível.");
+        showAutoPopup(`Quantidade solicitada excede o estoque de ${stock} itens do produto ${product}!`, 3000);
         return;
     }
 
