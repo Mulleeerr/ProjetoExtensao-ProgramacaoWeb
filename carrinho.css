@@ -16,6 +16,9 @@ body {
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+    max-width: 100%;
+    margin-bottom: 150px;
 }
 
 /* Tabela */
@@ -24,6 +27,8 @@ body {
     border-radius: 8px;
     overflow: hidden;
     background-color: #ffffff;
+    table-layout:fixed;
+    width: 100%;
 }
 
 .table thead {
@@ -37,6 +42,8 @@ body {
     vertical-align: middle;
     padding: 10px;
     border: 1px solid #dee2e6;
+    word-wrap: break-word;
+    max-width: 150px;
 }
 
 .table tbody tr:hover {
