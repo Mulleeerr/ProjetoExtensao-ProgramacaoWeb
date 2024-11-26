@@ -8,7 +8,7 @@ function updateCartBadge() {
   }
 }
 document.addEventListener('DOMContentLoaded', function () {
-  setTimeout(updateCartBadge, 10);
+  setTimeout(updateCartBadge, 50);
 });
 
 
