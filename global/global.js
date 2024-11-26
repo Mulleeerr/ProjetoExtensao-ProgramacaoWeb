@@ -11,7 +11,7 @@ function updateCartBadge() {
 document.addEventListener("DOMContentLoaded", () => {
   const navbar = document.querySelector(".navbar");
   if (navbar) {
-      UpdateBadge();
+    updateCartBadge();
   }
 });
 
