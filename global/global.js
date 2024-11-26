@@ -7,8 +7,12 @@ function updateCartBadge() {
     badge.textContent = cart.length;
   }
 }
-document.addEventListener("DOMContentLoaded", function () {
-  setTimeout(updateCartBadge, 10);
+
+document.addEventListener("DOMContentLoaded", () => {
+  const navbar = document.querySelector(".navbar");
+  if (navbar) {
+      UpdateBadge();
+  }
 });
 
 function showAutoPopup(message, duration = 3000) {
