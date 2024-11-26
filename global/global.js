@@ -9,7 +9,7 @@ function updateCartBadge() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const navbar = document.querySelector(".navbar");
+  const navbar = document.querySelector(".navbar-geral");
   if (navbar) {
     updateCartBadge();
   }
