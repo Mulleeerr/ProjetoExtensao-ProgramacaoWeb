@@ -11,7 +11,8 @@ Tecnologias Usadas:
   - Bootstrap  (componentes e ícones).
 
 Como rodar o projeto:
-Requisitos:
+
+  Requisitos:
   - Um navegador web moderno (Chrome, Firefox, Edge, etc.)
   - Editor de texto (Visual Studio Code, Sublime Text, etc.) para editar o código, se necessário.
 
