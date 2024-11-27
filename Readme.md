@@ -5,10 +5,10 @@ Professor Orientador: Jhonatan Alves
 Este projeto visa a criação de um sistema web que atenda a necessidade de um empreendedor local, neste caso, uma sistema para criação de pedidos de compras de produtos para um empreendedor que realiza a venda de produtos agricolas.
 
 Tecnologias Usadas: 
-  -HTML 5;
-  -CSS 3;
-  -JavaScript;
-  -Bootstrap  (componentes e ícones).
+  - HTML 5;
+  - CSS 3;
+  - JavaScript;
+  - Bootstrap  (componentes e ícones).
 
 Como rodar o projeto:
   Requisitos:
