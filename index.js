@@ -99,7 +99,7 @@ function addToCart(product, value, stock, discountQuantity, discountValue) {
 
     // Se o desconto se aplica
     if (quantity >= discountQuantity) {
-        discountAmount = total * (1 - discountValue / 100);
+        discountAmount = quantity * discountValue;
         finalPrice = total - discountAmount;
     }
 
