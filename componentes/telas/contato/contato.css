@@ -2,7 +2,7 @@
 
 .body1 {
     background-color: #809c7c;
-    font-family: Arial, sans-serif;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     margin: 0;
     padding: 0;
 }
@@ -15,6 +15,10 @@
 
 #nome-marcelo {
     font-family: "Lobster", sans-serif;
+}
+
+#navlogo-contato-mainpage{
+    margin-bottom: 80px;
 }
 
 #popup {

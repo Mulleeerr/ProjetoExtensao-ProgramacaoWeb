@@ -115,13 +115,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 function loadNavlogoCarrinho(){
-    fetch('./componentes/navlogo/navlogo-carrinho.html')
+    fetch('../../navlogo/navlogo-carrinho.html')
         .then(response => response.text())
         .then(data => document.getElementById('navlogo-carrinho-mainpage').innerHTML = data)
 }
 
 function loadNavbar(){
-    fetch('./componentes/navbar/navbar.html')
+    fetch('../../navbar/navbar.html')
         .then(response => response.text())
         .then(data => document.getElementById('navbar-mainpage').innerHTML = data)
 }

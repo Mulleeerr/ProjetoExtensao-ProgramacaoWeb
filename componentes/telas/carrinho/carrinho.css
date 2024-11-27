@@ -9,6 +9,10 @@ body {
     background-color: #809c7c;
 }
 
+#navlogo-carrinho-mainpage {
+    margin-bottom: 80px;
+}
+
 /* Container principal */
 .container {
     margin-top: 50px;

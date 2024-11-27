@@ -7,13 +7,13 @@ function closePopup() {
 }
 
 function loadNavlogoContato(){
-    fetch('./componentes/navlogo/navlogo-contato.html')
+    fetch('../../navlogo/navlogo-contato.html')
         .then(response => response.text())
         .then(data => document.getElementById('navlogo-contato-mainpage').innerHTML = data)
 }
 
 function loadNavbar(){
-    fetch('./componentes/navbar/navbar.html')
+    fetch('../../navbar/navbar.html')
         .then(response => response.text())
         .then(data => document.getElementById('navbar-mainpage').innerHTML = data)
 }
