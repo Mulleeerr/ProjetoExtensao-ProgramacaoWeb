@@ -121,6 +121,10 @@ function addToCart(product, value, stock, discountQuantity, discountValue) {
 
             if (existingProductIndex !== -1) {
                 // Atualiza o item no carrinho
+                if(cart[existingProductIndex].quantity + quantity > stock) {
+                    showAutoPopup(`Quantidade solicitada excede o limite do estoque!`,3000);
+                    return;
+                }
                 cart[existingProductIndex].quantity += quantity;
                 cart[existingProductIndex].totalPrice += finalPrice;
             } else {
